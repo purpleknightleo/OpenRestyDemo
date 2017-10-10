@@ -44,14 +44,14 @@ if not res then
 end
 
 -- insert one, take notice of single quotes on string type
-res,err,errno,sqlstate = db:query(string.format([[insert into %s values(null, '%s', %d)]], table_name, 'kb', 38))
+res,err,errno,sqlstate = db:query(string.format("insert into %s values(null, '%s', %d)", table_name, 'kb', 38))
 if not res then
 	ngx.say('fail to insert, ', err, ": ", errno, " ", sqlstate)
 	return 
 end
 
 -- select one
-res,err,errno,sqlstate = db:query(string.format([[select * from %s where name = '%s']], table_name, 'kb'))
+res,err,errno,sqlstate = db:query(string.format("select * from %s where name = '%s'", table_name, 'kb'))
 if not res then
 	ngx.say('fail to select, ', err, ": ", errno, " ", sqlstate)
 	return 
