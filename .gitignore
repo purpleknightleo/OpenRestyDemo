@@ -1,3 +1,4 @@
+.DS_Store
 ./client_body_temp/
 ./fastcgi_temp/
 logs/
