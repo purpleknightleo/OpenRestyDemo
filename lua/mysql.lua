@@ -10,6 +10,13 @@
 --   PRIMARY KEY (`id`)
 -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
+function close_db(db) 
+	if not db then
+		return
+	end
+	db:close()
+end
+
 local mysql = require('resty.mysql')
 local db = mysql:new()
 local table_name = 'user'
@@ -49,6 +56,9 @@ if not res then
 	ngx.say('fail to select, ', err, ": ", errno, " ", sqlstate)
 	return 
 end
+
+-- close db
+close_db()
 
 -- parse resultset to json string
 local cjson = require "cjson"
